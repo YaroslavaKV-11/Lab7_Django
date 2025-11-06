@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+{% block title %}Категорії{% endblock %}
+{% block content %}
+<h1>Категорії</h1>
+<div class="list-group">
+  {% for cat in categories %}
+  <div class="list-group-item">
+    <i class="{{ cat.icon }}"></i> <b>{{ cat.title }}</b>
+    {% if cat.description %}<div class="text-muted">{{ cat.description }}</div>{% endif %}
+  </div>
+  {% empty %}
+  <div class="list-group-item">Немає категорій.</div>
+  {% endfor %}
+</div>
+{% endblock %}

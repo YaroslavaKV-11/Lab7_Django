@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+{% block title %}Головна{% endblock %}
+{% block content %}
+<h1>Останні статті</h1>
+<div class="row">
+  {% for a in latest %}
+  <div class="col-md-4">
+    <div class="card mb-3">
+      {% if a.image %}<img class="card-img-top" src="{{ a.image }}" alt="">{% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ a.title }}</h5>
+        <p class="card-text"><small>{{ a.publication_date }} · {{ a.author }}</small></p>
+        <a class="btn btn-primary" href="{% url 'article_detail' a.pk %}">Читати</a>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <p>Ще немає статей.</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+{% block title %}Усі статті{% endblock %}
+{% block content %}
+<h1>Усі опубліковані статті</h1>
+<ul class="list-group">
+  {% for a in items %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <span>
+        <a href="{% url 'article_detail' a.pk %}">{{ a.title }}</a>
+        <small class="text-muted">— {{ a.publication_date }}</small>
+      </span>
+      <span class="badge text-bg-light">{{ a.category.title }}</span>
+    </li>
+  {% empty %}
+    <li class="list-group-item">Порожньо</li>
+  {% endfor %}
+</ul>
+{% endblock %}

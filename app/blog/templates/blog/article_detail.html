@@ -1,0 +1,30 @@
+{% extends "blog/base.html" %}
+{% block title %}{{ article.title }}{% endblock %}
+{% block content %}
+<h1>{{ article.title }}</h1>
+<p><i class="{{ article.category.icon }}"></i> {{ article.category.title }}</p>
+<p><small>{{ article.publication_date }} · {{ article.author }}</small></p>
+{% if article.image %}<img class="img-fluid mb-3" src="{{ article.image }}" alt="">{% endif %}
+
+<div class="mb-4">{{ article.text|linebreaks }}</div>
+
+<p><b>Теги:</b>
+  {% for t in article.tag.all %}
+    <span class="badge text-bg-secondary">{{ t.title }}</span>
+  {% empty %}
+    <span class="text-muted">немає</span>
+  {% endfor %}
+</p>
+
+<h3>Коментарі</h3>
+<ul class="list-group">
+  {% for c in article.comments.all %}
+    <li class="list-group-item">
+      <b>{{ c.author }}</b> <small class="text-muted">{{ c.publication_date }}</small><br>
+      {{ c.text }}
+    </li>
+  {% empty %}
+    <li class="list-group-item">Коментарів ще немає.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
