@@ -1,0 +1,234 @@
+[
+{
+  "model": "blog.category",
+  "pk": 1,
+  "fields": {
+    "title": "Книги",
+    "description": "Рецензії та добірки корисної літератури для айтішників.",
+    "icon": "fa-solid fa-book"
+  }
+},
+{
+  "model": "blog.category",
+  "pk": 2,
+  "fields": {
+    "title": "Технології",
+    "description": "Огляди інструментів, фреймворків та практик розробки.",
+    "icon": "fa-solid fa-microchip"
+  }
+},
+{
+  "model": "blog.category",
+  "pk": 3,
+  "fields": {
+    "title": "Подорожі",
+    "description": "Нотатки з поїздок і поради для роботи в дорозі.",
+    "icon": "fa-solid fa-earth-europe"
+  }
+},
+{
+  "model": "blog.tag",
+  "pk": 1,
+  "fields": {
+    "title": "Python"
+  }
+},
+{
+  "model": "blog.tag",
+  "pk": 2,
+  "fields": {
+    "title": "Django"
+  }
+},
+{
+  "model": "blog.tag",
+  "pk": 3,
+  "fields": {
+    "title": "Поради"
+  }
+},
+{
+  "model": "blog.tag",
+  "pk": 4,
+  "fields": {
+    "title": "Огляд"
+  }
+},
+{
+  "model": "blog.tag",
+  "pk": 5,
+  "fields": {
+    "title": "MySQL"
+  }
+},
+{
+  "model": "blog.tag",
+  "pk": 6,
+  "fields": {
+    "title": "Nginx"
+  }
+},
+{
+  "model": "blog.tag",
+  "pk": 7,
+  "fields": {
+    "title": "Docker"
+  }
+},
+{
+  "model": "blog.article",
+  "pk": 1,
+  "fields": {
+    "title": "Як підняти Django + MySQL у Docker за 15 хвилин",
+    "author": "Марина Коваль",
+    "text": "У цій інструкції зберемо мінімальний стек: Django як веб-фреймворк, MySQL як базу та Nginx як реверс-проксі. Покажу, які пакети потрібні для mysqlclient і як правильно описати залежності в docker-compose.\r\n\r\nРезультат - локальне оточення, яке запускається однією командою і легко переноситься між комп’ютерами.",
+    "image": "https://miro.medium.com/v2/resize:fit:1200/1*wIp4OUfFfhG2YY8O40mcgw.png",
+    "publication_date": "2025-06-18",
+    "is_published": true,
+    "category": 2,
+    "tag": [
+      2,
+      5,
+      7
+    ]
+  }
+},
+{
+  "model": "blog.article",
+  "pk": 2,
+  "fields": {
+    "title": "5 типових помилок початківців у Django і як їх уникнути",
+    "author": "Ярослава Шевчук",
+    "text": "Неправильні налаштування ALLOWED_HOSTS, забутий collectstatic, плутанина з шляхами до шаблонів, \r\nігнорування міграцій та робота без віртуального середовища — це класика.\r\n\r\nРозбираємо кожен пункт і даємо короткий чек-лист перед релізом.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5erRxDLBKEhSNkcGPyh8xAhGEY0Oh9sNZsQ&s",
+    "publication_date": "2025-07-05",
+    "is_published": true,
+    "category": 2,
+    "tag": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "blog.article",
+  "pk": 3,
+  "fields": {
+    "title": "Добірка технічних книжок для старту у веб-розробці",
+    "author": "Ірина Федишин",
+    "text": "Для впевненого старту варто поєднати теорію і практику. У підборці — книги з Python, веб-архітектури, баз даних і зручних інструментів для командної роботи.\r\n\r\nКожна книга має короткий опис і рівень складності.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTlx3iTvhYbUvETzTxQzcY7R-Mx8Ip4g_4CQ&s",
+    "publication_date": "2025-05-27",
+    "is_published": true,
+    "category": 1,
+    "tag": [
+      1,
+      4
+    ]
+  }
+},
+{
+  "model": "blog.article",
+  "pk": 4,
+  "fields": {
+    "title": "Використання Nginx як реверс-проксі для статики Django",
+    "author": "Сергій Прокопенко",
+    "text": "Nginx ідеально підходить для роздачі статичних файлів і проксування запитів до Gunicorn. \r\nРозбираємо типову конфігурацію location /static/ та необхідні заголовки.\r\n\r\nДодаємо поради з кешування і структурування томів у docker-compose.",
+    "image": "https://blog.desdelinux.net/wp-content/uploads/2022/05/Nginx.jpg",
+    "publication_date": "2025-08-02",
+    "is_published": true,
+    "category": 2,
+    "tag": [
+      2,
+      6
+    ]
+  }
+},
+{
+  "model": "blog.article",
+  "pk": 5,
+  "fields": {
+    "title": "Подорож розробника: як налаштувати робочу станцію у дорозі",
+    "author": "Андрій Левчук",
+    "text": "Описую комплект з легкого ноутбука, павербанка, мобільного інтернету та хмарних середовищ. \r\nДілюся порадами, як тримати локальні проєкти синхронізованими з GitHub і не втрачати фокус.\r\n\r\nДодатково — чек-лист перед вильотом.",
+    "image": "https://wp-int-blog.s3.eu-central-1.amazonaws.com/wp-content/uploads/2022/06/28155715/24.png",
+    "publication_date": "2025-09-12",
+    "is_published": true,
+    "category": 3,
+    "tag": [
+      3,
+      7
+    ]
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 1,
+  "fields": {
+    "text": "Вийшло з першого разу! Дякую за чіткі кроки.",
+    "author": "Ігор М.",
+    "publication_date": "2025-11-06",
+    "article": 1
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 2,
+  "fields": {
+    "text": "Підкажіть, будь ласка, а на Windows треба щось додатково для mysqlclient?",
+    "author": "Олег П.",
+    "publication_date": "2025-11-06",
+    "article": 1
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 3,
+  "fields": {
+    "text": "Оце про collectstatic — в саме яблучко, завжди забуваю.",
+    "author": "Соломія К.",
+    "publication_date": "2025-11-06",
+    "article": 2
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 4,
+  "fields": {
+    "text": "Було б круто мати PDF-чек-лист наприкінці.",
+    "author": "Товтрина О.",
+    "publication_date": "2025-11-06",
+    "article": 2
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 5,
+  "fields": {
+    "text": "Додайте, будь ласка, ще щось з алгоритмів для новачків.",
+    "author": "Микола Б.",
+    "publication_date": "2025-11-06",
+    "article": 3
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 6,
+  "fields": {
+    "text": "Працює! А як правильно додати кешування для картинок?",
+    "author": "Олесь П.",
+    "publication_date": "2025-11-06",
+    "article": 4
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 7,
+  "fields": {
+    "text": "Класний чек-лист, збережу перед наступною поїздкою.",
+    "author": "Налатія М.",
+    "publication_date": "2025-11-06",
+    "article": 5
+  }
+}
+]
