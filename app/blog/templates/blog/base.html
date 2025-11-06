@@ -8,12 +8,25 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 </head>
 <body class="container py-4">
-  <nav class="mb-4">
-    <a class="me-3" href="{% url 'home' %}">Головна</a>
-    <a class="me-3" href="{% url 'article_list' %}">Статті</a>
-    <a class="me-3" href="{% url 'category_list' %}">Категорії</a>
-    <a class="me-3" href="/admin/">Адмінка</a>
+
+  <nav class="mb-4 d-flex justify-content-between align-items-center">
+    <div>
+      <a class="me-3" href="{% url 'home' %}">Головна</a>
+      <a class="me-3" href="{% url 'article_list' %}">Статті</a>
+      <a class="me-3" href="{% url 'category_list' %}">Категорії</a>
+      <a class="me-3" href="/admin/">Адмінка</a>
+    </div>
+    <div>
+      {% if user.is_authenticated %}
+        <span class="me-3">Привіт, {{ user.get_username }}</span>
+        <a href="{% url 'logout' %}">Вийти</a>
+      {% else %}
+        <a class="me-3" href="{% url 'login' %}">Вхід</a>
+        <a class="me-3" href="{% url 'register' %}">Реєстрація</a>
+      {% endif %}
+    </div>
   </nav>
+
   {% block content %}{% endblock %}
 </body>
 </html>
