@@ -17,14 +17,31 @@
 </p>
 
 <h3>Коментарі</h3>
+<p>
+  <a class="btn btn-outline-primary" href="{% url 'comment_create' article.pk %}">
+    Додати коментар{% if not user.is_authenticated %} як гість{% endif %}
+  </a>
+</p>
+
 <ul class="list-group">
   {% for c in article.comments.all %}
     <li class="list-group-item">
-      <b>{{ c.author }}</b> <small class="text-muted">{{ c.publication_date }}</small><br>
+      <b>{{ c.author|default:c.user.get_username }}</b>
+      <small class="text-muted">{{ c.publication_date }}</small><br>
       {{ c.text }}
+      {% if user.is_authenticated and (c.user_id == user.id or is_moderator) %}
+        <div class="mt-2">
+          <a class="btn btn-sm btn-outline-secondary" href="{% url 'comment_edit' article.pk c.pk %}">Редагувати</a>
+          <form method="post" action="{% url 'comment_delete' article.pk c.pk %}" style="display:inline">
+            {% csrf_token %}
+            <button class="btn btn-sm btn-outline-danger">Видалити</button>
+          </form>
+        </div>
+      {% endif %}
     </li>
   {% empty %}
     <li class="list-group-item">Коментарів ще немає.</li>
   {% endfor %}
 </ul>
+
 {% endblock %}

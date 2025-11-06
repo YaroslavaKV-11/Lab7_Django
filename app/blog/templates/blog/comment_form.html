@@ -1,0 +1,8 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<h1>{% if edit_mode %}Редагувати коментар{% else %}Новий коментар{% endif %}</h1>
+<form method="post">{% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-primary">{% if edit_mode %}Зберегти{% else %}Додати{% endif %}</button>
+</form>
+{% endblock %}

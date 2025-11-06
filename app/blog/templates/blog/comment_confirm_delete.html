@@ -1,0 +1,9 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<h1>Видалити коментар?</h1>
+<p><b>{{ comment.author or comment.user.get_username }}</b>: {{ comment.text }}</p>
+<form method="post">{% csrf_token %}
+  <button class="btn btn-danger">Підтвердити видалення</button>
+  <a class="btn btn-secondary" href="{% url 'article_detail' comment.article.pk %}">Скасувати</a>
+</form>
+{% endblock %}
