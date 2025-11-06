@@ -1,4 +1,8 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
 
 class Category(models.Model):
     title = models.CharField(max_length=100)
@@ -18,9 +22,16 @@ class Tag(models.Model):
 
 class Article(models.Model):
     title = models.CharField(max_length=200)
-    author = models.CharField(max_length=100)  
+
+    author = models.CharField(max_length=100, blank=True)
+
+    user = models.ForeignKey(
+        User, null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='articles'
+    )
+
     text = models.TextField()
-    image = models.URLField(blank=True)       
+    image = models.URLField(blank=True)
     publication_date = models.DateField()
     is_published = models.BooleanField(default=True)
 
@@ -36,12 +47,20 @@ class Article(models.Model):
 
 class Comment(models.Model):
     text = models.TextField()
-    author = models.CharField(max_length=100)
-    publication_date = models.DateField(auto_now_add=True)  
-    # один коментар належить одній статті
+
+    author = models.CharField(max_length=100, blank=True)
+
+    publication_date = models.DateField(auto_now_add=True)
+
     article = models.ForeignKey(
         Article, on_delete=models.CASCADE, related_name='comments'
     )
 
+    user = models.ForeignKey(
+        User, null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='comments'
+    )
+
     def __str__(self):
-        return f"{self.author}: {self.text[:30]}"
+        who = self.author or (self.user.get_username() if self.user else "anon")
+        return f"{who}: {self.text[:30]}"
