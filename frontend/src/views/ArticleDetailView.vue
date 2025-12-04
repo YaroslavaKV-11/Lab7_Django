@@ -62,7 +62,6 @@
       </section>
     </section>
 
-    <!-- Стани завантаження / помилки -->
     <section class="detail-inner" v-if="loading">
       <div class="status status-info">Завантаження статті…</div>
     </section>
