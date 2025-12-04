@@ -1,4 +1,3 @@
-// frontend/src/stores/articles.js
 import { defineStore } from 'pinia'
 import { fetchArticles as apiFetchArticles } from '../api/articles'
 
@@ -10,7 +9,6 @@ export const useArticlesStore = defineStore('articles', {
   }),
 
   actions: {
-    // Дія з потрібною назвою
     async fetchArticles() {
       this.loading = true
       this.error = null
