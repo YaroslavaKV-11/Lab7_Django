@@ -58,14 +58,17 @@
             </p>
 
             <div class="article-footer">
-              <span class="article-chip" v-if="article.category">
-                {{ article.category }}
-              </span>
+  <span class="article-chip" v-if="article.category">
+    {{ article.category }}
+  </span>
 
-              <button class="article-button" type="button">
-                Читати
-              </button>
-            </div>
+  <RouterLink
+    class="article-button-link"
+    :to="{ name: 'article-detail', params: { id: article.id } }"
+  >
+    Читати
+  </RouterLink>
+</div>
           </div>
         </article>
       </div>
@@ -290,6 +293,33 @@ const formatDate = (value) => {
   transform: translateY(0);
   box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
 }
+
+.article-button-link {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.35);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.article-button-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.45);
+}
+
+.article-button-link:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
+}
+
 
 @media (max-width: 768px) {
   .page {
