@@ -26,22 +26,43 @@
 <ul class="list-group">
   {% for c in article.comments.all %}
     <li class="list-group-item">
-      <b>{{ c.author|default:c.user.get_username }}</b>
+      <b>
+  {% if c.author %}
+    {{ c.author }}
+  {% elif c.user %}
+    {{ c.user.username }}
+  {% else %}
+    anon
+  {% endif %}
+</b>
       <small class="text-muted">{{ c.publication_date }}</small><br>
       {{ c.text }}
-      {% if user.is_authenticated and (c.user_id == user.id or is_moderator) %}
-        <div class="mt-2">
-          <a class="btn btn-sm btn-outline-secondary" href="{% url 'comment_edit' article.pk c.pk %}">Редагувати</a>
-          <form method="post" action="{% url 'comment_delete' article.pk c.pk %}" style="display:inline">
-            {% csrf_token %}
-            <button class="btn btn-sm btn-outline-danger">Видалити</button>
-          </form>
-        </div>
-      {% endif %}
+
+      {% if user.is_authenticated %}
+  {% if c.user_id == user.id %}
+    <!-- власник: може редагувати і видаляти -->
+    <div class="mt-2">
+      <a class="btn btn-sm btn-outline-secondary"
+         href="{% url 'comment_edit' article.pk c.pk %}">Редагувати</a>
+      <form method="post" action="{% url 'comment_delete' article.pk c.pk %}" style="display:inline">
+        {% csrf_token %}<button class="btn btn-sm btn-outline-danger">Видалити</button>
+      </form>
+    </div>
+  {% elif is_moderator %}
+    <!-- модератор (НЕ власник): тільки видаляти -->
+    <div class="mt-2">
+      <form method="post" action="{% url 'comment_delete' article.pk c.pk %}" style="display:inline">
+        {% csrf_token %}<button class="btn btn-sm btn-outline-danger">Видалити</button>
+      </form>
+    </div>
+  {% endif %}
+{% endif %}
+
     </li>
   {% empty %}
     <li class="list-group-item">Коментарів ще немає.</li>
   {% endfor %}
 </ul>
+
 
 {% endblock %}

@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -10,4 +10,5 @@ urlpatterns = [
     path('articles/<int:pk>/comment/new/', views.comment_create, name='comment_create'),
     path('articles/<int:pk>/comment/<int:cid>/edit/', views.comment_edit, name='comment_edit'),
     path('articles/<int:pk>/comment/<int:cid>/delete/', views.comment_delete, name='comment_delete'),
+    path('api/', include('blog.api_urls')),
 ]

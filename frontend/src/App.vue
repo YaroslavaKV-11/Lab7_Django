@@ -1,30 +1,57 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="app">
+    <header class="app-header">
+      <div class="container header-inner">
+        <h1 class="logo">Мій блог</h1>
+        <nav class="nav">
+          <RouterLink to="/" class="nav-link">Головна</RouterLink>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="container">
+        <RouterView />
+      </div>
+    </main>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
+<script setup>
+import { RouterView, RouterLink } from 'vue-router'
+</script>
+
 <style scoped>
+.app-header {
+  background-color: #1976d2;
+  color: #fff;
+  padding: 16px 0;
+  margin-bottom: 32px;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.main {
+  padding-bottom: 40px;
 }
 </style>
